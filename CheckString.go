@@ -10,7 +10,7 @@ import (
 )
 
 /*This code checks if your string is "right"
-* Right means that strings starts with Capital letter and ends with dot "."
+* Right means that your string starts with Capital letter and ends with dot "."
  */
 
 func main() {
