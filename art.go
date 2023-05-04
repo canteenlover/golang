@@ -15,19 +15,19 @@ func check(err error) {
 	}
 }
 
-func loadImg(filePath string) (image.Image, error) { //Загрузка фотки
+func loadImg(filePath string) (image.Image, error) { //Import img
 	f, err := os.Open(filePath)
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()                  //
-	image, _, err := image.Decode(f) //В конце попробовать вернуть string - 2 знач
+	defer f.Close()                  
+	image, _, err := image.Decode(f)
 	return image, err
 }
 
 func grayscale(c color.Color) int { //F = 0.30*R + 0.59*G + 0.11*B
 	// Получаем на вход цвет пикселя и преобразуем его в оттеенок серого
-	r, g, b, _ := c.RGBA()                                         //В конце попробовать что нибудь с альфой
+	r, g, b, _ := c.RGBA()
 	return int(0.3*float64(r) + 0.59*float64(g) + 0.11*float64(b)) //Возвращаем оттенок
 }
 
@@ -52,7 +52,7 @@ func main() {
 	//ramp := "@%#*+=-:. "
 	ramp := "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,. "
 	max := image.Bounds().Max            //(1218,1624)(me.png) - получаем доступ по max.X, max.Y
-	scaleX, scaleY := 5, 10              //Поиграть со значениями 10, 5 - шаг между пикселями, 6,4 - супер для me.png, 10,12 ok для roma.jpg, 5,4 - pres.jpg
+	scaleX, scaleY := 5, 10              //6,4 - супер для me.png, 10,12 ok для roma.jpg, 5,4 - pres.jpg
 	for y := 0; y < max.Y; y += scaleX { //(406, 541) / 16 = 25, 34
 		for x := 0; x < max.X; x += scaleX {
 			c := avgPixel(image, x, y, scaleX, scaleY)
